@@ -1,7 +1,5 @@
 package java8.ex01;
 
-import static org.junit.Assert.assertEquals;
-
 import java.util.List;
 
 import org.junit.Test;
@@ -21,10 +19,11 @@ public class Method_01_Test {
 
         // TODO créer une méthode int sumAge()
         // TODO Cette méthode retourne le résultat de l'addition des ages des personnes
-        public default int sumAge(int ...params) {
+        public default int sumAge() {
         	int resultat = 0;
-        	for(int val : params) {
-        		resultat += val;
+        	List<Person> liste = findAll();
+        	for(Person person : liste) {
+        		resultat += person.getAge();
         	}
 			return resultat;
         	
@@ -59,8 +58,8 @@ public class Method_01_Test {
         DaoA daoA = new DaoA();
 
         // TODO invoquer la méthode sumAge pour que le test soit passant
-        int result = daoA.sumAge(50, 50, 50, 60);
-        assertEquals(result, 210);
+        int result = daoA.sumAge();
+        assert result == 210;
     }
 
     @Test
@@ -69,7 +68,7 @@ public class Method_01_Test {
         DaoB daoB = new DaoB();
 
         // TODO invoquer la méthode sumAge pour que le test soit passant
-        int result = daoB.sumAge(5000, 50);
+        int result = daoB.sumAge();
         assert result == 5050;
 
     }
